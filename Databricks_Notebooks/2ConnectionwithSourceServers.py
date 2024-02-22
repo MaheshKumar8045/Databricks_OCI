@@ -20,24 +20,34 @@ connectionProperties= {
 
 # COMMAND ----------
 
-# DBTITLE 1,Reading Tables from SQL
-#read cfg_databricks_customer
-cfg_df_customer=spark.read.format("jdbc")\
-.option("url",sqlServerURL)\
-.option("dbtable","cfg_databricks_customer")\
-.option("user",User)\
-.option("password",passsword)\
-.option("driver","com.microsoft.sqlserver.jdbc.SQLServerDriver")\
-.load()
+# DBTITLE 1,Reading CFG Tables from SQL (Not needed)
+# #read cfg_databricks_customer
+# cfg_df_customer=spark.read.format("jdbc")\
+# .option("url",sqlServerURL)\
+# .option("dbtable","cfg_databricks_customer")\
+# .option("user",User)\
+# .option("password",passsword)\
+# .option("driver","com.microsoft.sqlserver.jdbc.SQLServerDriver")\
+# .load()
 
-#read cfg_databricks_Transactions
-cfg_df_Transactions=spark.read.format("jdbc")\
-.option("url",sqlServerURL)\
-.option("dbtable","cfg_databricks_transactions")\
-.option("user",User)\
-.option("password",passsword)\
-.option("driver","com.microsoft.sqlserver.jdbc.SQLServerDriver")\
-.load()
+# #read cfg_databricks_Transactions
+# cfg_df_Transactions=spark.read.format("jdbc")\
+# .option("url",sqlServerURL)\
+# .option("dbtable","cfg_databricks_transactions")\
+# .option("user",User)\
+# .option("password",passsword)\
+# .option("driver","com.microsoft.sqlserver.jdbc.SQLServerDriver")\
+# .load()
+
+
+# COMMAND ----------
+
+# DBTITLE 1,Reading CFG Tables from DBFS
+# Read cfg_df_customer table
+cfg_df_customer = spark.read.table("cfg_Customer")
+
+# Read cfg_df_Transactions table
+cfg_df_Transactions = spark.read.table("cfg_Transactions")
 
 
 # COMMAND ----------

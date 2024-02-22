@@ -28,3 +28,12 @@ cfg_df_customer.show()
 
 # Transactions
 cfg_df_Transactions.show()
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select * from cfg_customer;
+
+# COMMAND ----------
+
+
