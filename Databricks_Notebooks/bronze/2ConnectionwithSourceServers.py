@@ -4,11 +4,15 @@
 
 # COMMAND ----------
 
+display(dbutils.secrets.listScopes())
+
+# COMMAND ----------
+
 sqlServerName="adbworkshopserver.database.windows.net"
 sqlDB="AADT"
 sqlPORT=1433
-User="serveradmin"
-passsword="Welcome@123"
+User= dbutils.secrets.get(scope="OCI_Azure_Scope",key="AzureSQLUser")
+passsword= dbutils.secrets.get(scope="OCI_Azure_Scope",key="AzureSQLPass")
 sqlServerURL="jdbc:sqlserver://{0}:{1};database={2}".format(sqlServerName,sqlPORT,sqlDB)
 connectionProperties= {
 "user":User,
@@ -62,6 +66,9 @@ DB_URL_TLS="""jdbc:oracle:thin:@(description= (retry_count=20)(retry_delay=3)(ad
 
 jdbcDriver="oracle.jdbc.driver.OracleDriver"
 
+OCIUser= dbutils.secrets.get(scope="OCI_Azure_Scope",key="OCIUserName")
+OCIPass= dbutils.secrets.get(scope="OCI_Azure_Scope",key="OCIPass")
+
 
 # COMMAND ----------
 
@@ -71,8 +78,8 @@ Customer_df=spark.read\
     .format("jdbc")\
     .option("url",DB_URL_TLS)\
     .option("dbtable","Customer_Raw")\
-    .option("user","ADMIN")\
-    .option("password","Welcome123456")\
+    .option("user",OCIUser)\
+    .option("password",OCIPass)\
     .option("fetchsize",500000)\
     .option("driver",jdbcDriver)\
     .load()
@@ -82,8 +89,8 @@ Transactions_df=spark.read\
     .format("jdbc")\
     .option("url",DB_URL_TLS)\
     .option("dbtable","Transactions_Raw")\
-    .option("user","ADMIN")\
-    .option("password","Welcome123456")\
+    .option("user",OCIUser)\
+    .option("password",OCIPass)\
     .option("fetchsize",500000)\
     .option("driver",jdbcDriver)\
     .load()
