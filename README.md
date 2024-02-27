@@ -1,4 +1,6 @@
 # Databricks_OCI
+Medallion Architecture integrating ingesting data tables from multiple source and performing incremental ETL into databricks delta tables to generate reports 
+
 In this we have three tables Customer_Raw, Transactions_Raw, ProdCatSubCat (download from resource folder and rename in oracle as follows)
 in which M_Customer, M_Transactions are in Oracle autonomous DB, and M_ProdCatSubCat is in loacl dbfs
 then we create and use cfg table to lookup for increamental records
